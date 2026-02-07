@@ -45,12 +45,7 @@ const Header = () => {
               </Link>
             );
           })}
-          <Link
-            to="/contact"
-            className="ml-2 gradient-bg text-primary-foreground px-5 py-2 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity"
-          >
-            Get a Quote
-          </Link>
+          
         </nav>
 
         {/* Mobile toggle */}
