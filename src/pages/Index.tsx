@@ -46,7 +46,7 @@ const Index = () => {
   return (
     <>
       {/* HERO */}
-      <section className="relative h-[600px] md:h-[700px] overflow-hidden">
+      <section className="relative h-[500px] sm:h-[600px] md:h-[700px] overflow-hidden">
         {heroImages.map((img, i) => (
           <div
             key={i}
