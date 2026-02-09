@@ -14,7 +14,13 @@ import {
   Award,
   Factory,
 } from "lucide-react";
-import { heroImages, engineeringTeam, serviceImages, industryImages } from "@/lib/images";
+import {
+  heroImages,
+  engineeringTeam,
+  aboutUsImage, // ✅ ADDED
+  serviceImages,
+  industryImages,
+} from "@/lib/images";
 import { services } from "@/data/services";
 
 const industries = [
@@ -127,10 +133,11 @@ const Index = () => {
                 From concept to detailed engineering, every deliverable is developed with accuracy, accountability, and constructability in mind.
               </p>
             </div>
+             {/* ✅ CHANGED IMAGE HERE */}
             <div className="rounded-xl overflow-hidden card-shadow">
               <img
-                src={engineeringTeam}
-                alt="Engineering team discussing plant design"
+                src={aboutUsImage}
+                alt="About Futunir engineering team"
                 className="w-full h-80 object-cover"
               />
             </div>
