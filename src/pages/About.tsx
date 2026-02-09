@@ -27,7 +27,11 @@ const About = () => {
                 Founded by experienced engineering professionals with extensive EPC exposure, Futunir delivers practical, constructible, and execution-focused engineering solutions across multiple industries.
               </p>
               <p className="text-muted-foreground leading-relaxed font-medium text-left">
-                We do not believe in over-designed drawings. We believe in engineering that works on site.
+                We do not believe in over-designed drawings.<p className="text-muted-foreground leading-relaxed">
+  <span className="font-semibold text-secondary">
+    We believe in engineering that works on site.
+  </span>
+</p>
               </p>
             </div>
             <div className="rounded-xl overflow-hidden card-shadow">

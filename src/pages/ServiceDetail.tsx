@@ -277,7 +277,7 @@ const ServiceDetail = () => {
               {hasSubTitle ? (
                 <>
                   {/* Line 1: 3D Modelling & 2D Drafting */}
-                  <span className="block whitespace-nowrap">
+                  <span className="whitespace-normal md:whitespace-nowrap">
                     {titleMain}
                   </span>
 
