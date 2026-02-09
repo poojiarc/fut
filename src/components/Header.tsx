@@ -1,17 +1,20 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Home, Info, Wrench, Globe, Phone, Menu, X } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Home, Info, Wrench, Globe, Phone, Menu, X, Briefcase, ChevronDown } from "lucide-react";
+import { services } from "@/data/services";
 
 const navItems = [
   { label: "Home", path: "/", icon: Home },
   { label: "About Us", path: "/about", icon: Info },
-  { label: "Services", path: "/services", icon: Wrench },
+  { label: "Services", path: "/services", icon: Wrench, hasDropdown: true },
   { label: "Remote Model", path: "/remote-model", icon: Globe },
+  { label: "Careers", path: "/careers", icon: Briefcase },
   { label: "Contact Us", path: "/contact", icon: Phone },
 ];
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const location = useLocation();
 
   return (
@@ -29,7 +32,41 @@ const Header = () => {
         <nav className="hidden md:flex items-center gap-1">
           {navItems.map((item) => {
             const Icon = item.icon;
-            const isActive = location.pathname === item.path;
+            const isActive = location.pathname === item.path || (item.hasDropdown && location.pathname.startsWith("/services"));
+
+            if (item.hasDropdown) {
+              return (
+                <div key={item.path} className="relative group">
+                  <Link
+                    to={item.path}
+                    className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      isActive
+                        ? "text-secondary bg-primary/5"
+                        : "text-foreground/70 hover:text-primary hover:bg-primary/5"
+                    }`}
+                  >
+                    <Icon className="h-4 w-4" />
+                    {item.label}
+                    <ChevronDown className="h-3 w-3 ml-0.5 transition-transform group-hover:rotate-180" />
+                  </Link>
+                  {/* Dropdown */}
+                  <div className="absolute top-full left-0 pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div className="bg-card border border-border rounded-xl shadow-lg py-2 min-w-[280px]">
+                      {services.map((service) => (
+                        <Link
+                          key={service.id}
+                          to={`/services/${service.id}`}
+                          className="block px-4 py-2.5 text-sm text-foreground/70 hover:text-secondary hover:bg-primary/5 transition-colors"
+                        >
+                          {service.shortTitle}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
             return (
               <Link
                 key={item.path}
@@ -45,7 +82,6 @@ const Header = () => {
               </Link>
             );
           })}
-          
         </nav>
 
         {/* Mobile toggle */}
@@ -65,6 +101,50 @@ const Header = () => {
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = location.pathname === item.path;
+
+              if (item.hasDropdown) {
+                return (
+                  <div key={item.path}>
+                    <button
+                      type="button"
+                      onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                      className={`w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                        isActive || location.pathname.startsWith("/services")
+                          ? "text-secondary bg-primary/5"
+                          : "text-foreground/70 hover:text-primary hover:bg-primary/5"
+                      }`}
+                    >
+                      <span className="flex items-center gap-3">
+                        <Icon className="h-5 w-5" />
+                        {item.label}
+                      </span>
+                      <ChevronDown className={`h-4 w-4 transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`} />
+                    </button>
+                    {mobileServicesOpen && (
+                      <div className="ml-8 mt-1 space-y-1">
+                        <Link
+                          to="/services"
+                          onClick={() => setMobileOpen(false)}
+                          className="block px-4 py-2 text-sm text-foreground/70 hover:text-secondary transition-colors"
+                        >
+                          All Services
+                        </Link>
+                        {services.map((service) => (
+                          <Link
+                            key={service.id}
+                            to={`/services/${service.id}`}
+                            onClick={() => setMobileOpen(false)}
+                            className="block px-4 py-2 text-sm text-foreground/70 hover:text-secondary transition-colors"
+                          >
+                            {service.shortTitle}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
               return (
                 <Link
                   key={item.path}

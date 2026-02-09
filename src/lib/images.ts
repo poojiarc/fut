@@ -13,9 +13,10 @@ import industryPharma from "@/assets/industry-pharma.jpg";
 import industrySemiconductor from "@/assets/industry-semiconductor.jpg";
 import industryBuildings from "@/assets/industry-buildings.jpg";
 import remoteDelivery from "@/assets/remote-delivery.jpg";
+import careersHero from "@/assets/careers-hero.jpg";
 
 export const heroImages = [hero1, hero2, hero3];
-export { engineeringTeam, remoteDelivery };
+export { engineeringTeam, remoteDelivery, careersHero };
 
 export const serviceImages: Record<string, string> = {
   "service-plant-engineering": servicePlantEngineering,
