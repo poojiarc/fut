@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Building2,
   Cpu,
   FlaskConical,
   Droplets,
-  CheckCircle2,
   ArrowRight,
   Shield,
   Target,
@@ -13,6 +12,7 @@ import {
   Clock,
   DollarSign,
   Award,
+  Factory,
 } from "lucide-react";
 import { heroImages, engineeringTeam, serviceImages, industryImages } from "@/lib/images";
 import { services } from "@/data/services";
@@ -20,8 +20,8 @@ import { services } from "@/data/services";
 const industries = [
   { id: "oil-gas", title: "Oil & Gas", icon: Droplets },
   { id: "pharma", title: "Pharmaceutical & Life Sciences", icon: FlaskConical },
-  { id: "semiconductor", title: "Semiconductor FABs", icon: Cpu },
-  { id: "buildings", title: "Residential & Commercial Buildings", icon: Building2 },
+  { id: "semiconductor", title: "Semiconductor Manufacturing", icon: Cpu },
+  { id: "buildings", title: "Buildings & Infrastructure", icon: Building2 },
 ];
 
 const whyFutunir = [
@@ -35,6 +35,7 @@ const whyFutunir = [
 
 const Index = () => {
   const [currentHero, setCurrentHero] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -42,6 +43,13 @@ const Index = () => {
     }, 5000);
     return () => clearInterval(interval);
   }, []);
+
+  const scrollToIndustries = () => {
+    const el = document.getElementById("industries-section");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <>
@@ -60,14 +68,14 @@ const Index = () => {
         <div className="relative z-10 h-full flex items-center">
           <div className="section-container">
             <div className="max-w-2xl text-primary-foreground">
-              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                Where <span className="text-cyan">Engineers</span> Design the Future
+              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-left">
+                Engineering the Future, <span className="text-cyan">Together</span>
               </h1>
-              <p className="text-primary-foreground/85 text-base md:text-lg leading-relaxed mb-8">
-                Futunir Global Pvt Ltd is a global engineering design company delivering high-quality, constructible, and cost-effective engineering solutions across Oil & Gas, Pharmaceuticals, Semiconductors, and Industrial facilities.
+              <p className="text-primary-foreground/85 text-base md:text-lg leading-relaxed mb-6 text-left">
+                Futunir Global Pvt Ltd is a global engineering design company specializing in high-quality, constructible and cost-effective engineering solutions for the Oil & Gas, Life Sciences, Semiconductor Manufacturing and Buildings & Infrastructure sectors worldwide.
               </p>
-              <p className="text-primary-foreground/75 text-sm md:text-base leading-relaxed mb-10">
-                We combine strong engineering fundamentals, digital design expertise, and a remote-first delivery model to support clients with reliable, scalable, and future-ready engineering solutions.
+              <p className="text-primary-foreground/75 text-sm md:text-base leading-relaxed mb-10 text-left">
+                We combine strong engineering fundamentals, digital design expertise and a remote first delivery model to support clients with reliable, scalable and future ready engineering solutions.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
@@ -103,19 +111,19 @@ const Index = () => {
       {/* ENGINEERING EXCELLENCE */}
       <section className="section-padding bg-card">
         <div className="section-container">
-          <p className="text-secondary text-sm font-semibold uppercase tracking-widest mb-2">About Us</p>
+          <p className="text-secondary text-sm font-semibold uppercase tracking-widest mb-2 text-left">About Us</p>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6 text-left">
                 Engineering Excellence <span className="text-secondary">at the Core</span>
               </h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <p className="text-muted-foreground leading-relaxed mb-4 text-left">
                 Futunir Global Pvt Ltd is built on the belief that strong fundamentals, disciplined execution, and responsible engineering create long-term value.
               </p>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                Founded by experienced engineering professionals with extensive EPC exposure, we focus on delivering practical, buildable designs that work on site—not over-designed drawings.
+              <p className="text-muted-foreground leading-relaxed mb-4 text-left">
+                Founded by experienced engineering professionals with extensive EPC exposure, we focus on delivering practical, buildable designs that work on site, not over-designed drawings.
               </p>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed text-left">
                 From concept to detailed engineering, every deliverable is developed with accuracy, accountability, and constructability in mind.
               </p>
             </div>
@@ -133,7 +141,7 @@ const Index = () => {
       {/* SERVICES */}
       <section className="section-padding bg-muted">
         <div className="section-container">
-          <div className="text-center mb-12">
+          <div className="mb-12 text-left">
             <p className="text-secondary text-sm font-semibold uppercase tracking-widest mb-2">What We Do</p>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
               Our Services
@@ -153,10 +161,10 @@ const Index = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/50 to-foreground/20" />
                 <div className="relative z-10 h-full flex flex-col justify-end p-6">
-                  <h3 className="font-display text-lg font-bold text-primary-foreground mb-1">
+                  <h3 className="font-display text-lg font-bold text-primary-foreground mb-1 text-left">
                     {service.shortTitle}
                   </h3>
-                  <p className="text-primary-foreground/70 text-sm line-clamp-2">
+                  <p className="text-primary-foreground/70 text-sm line-clamp-2 text-left">
                     {service.description}
                   </p>
                   <span className="mt-3 text-cyan text-sm font-medium inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -170,13 +178,15 @@ const Index = () => {
       </section>
 
       {/* INDUSTRIES */}
-      <section className="section-padding bg-card">
+      <section id="industries-section" className="section-padding bg-card">
         <div className="section-container">
-          <div className="text-center mb-12">
-            <p className="text-secondary text-sm font-semibold uppercase tracking-widest mb-2">Sectors</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
-              Industries We Serve
-            </h2>
+          <div className="mb-12 text-left flex items-center gap-4 flex-wrap">
+            <div>
+              <p className="text-secondary text-sm font-semibold uppercase tracking-widest mb-2">Sectors</p>
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
+                Industries We Serve
+              </h2>
+            </div>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {industries.map((ind) => {
@@ -195,7 +205,7 @@ const Index = () => {
                     <div className="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center shrink-0">
                       <Icon className="h-5 w-5 text-primary-foreground" />
                     </div>
-                    <h3 className="font-display font-semibold text-sm text-foreground">{ind.title}</h3>
+                    <h3 className="font-display font-semibold text-sm text-foreground text-left">{ind.title}</h3>
                   </div>
                 </div>
               );
@@ -207,7 +217,7 @@ const Index = () => {
       {/* WHY FUTUNIR */}
       <section className="section-padding bg-muted">
         <div className="section-container">
-          <div className="text-center mb-12">
+          <div className="mb-12 text-left">
             <p className="text-secondary text-sm font-semibold uppercase tracking-widest mb-2">Our Edge</p>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
               Why Futunir?
@@ -224,8 +234,8 @@ const Index = () => {
                   <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-4">
                     <Icon className="h-6 w-6 text-primary-foreground" />
                   </div>
-                  <h3 className="font-display font-bold text-foreground mb-2">{item.title}</h3>
-                  <p className="text-muted-foreground text-sm">{item.desc}</p>
+                  <h3 className="font-display font-bold text-foreground mb-2 text-left">{item.title}</h3>
+                  <p className="text-muted-foreground text-sm text-left">{item.desc}</p>
                 </div>
               );
             })}
@@ -235,11 +245,11 @@ const Index = () => {
 
       {/* CTA */}
       <section className="gradient-bg py-16">
-        <div className="section-container text-center">
+        <div className="section-container text-left">
           <h2 className="font-display text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
             Let's Engineer the Future Together
           </h2>
-          <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8">
+          <p className="text-primary-foreground/80 max-w-xl mb-8">
             Looking for a reliable engineering design partner? Let's discuss how Futunir Global Pvt Ltd can support your next project.
           </p>
           <Link

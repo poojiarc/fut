@@ -4,18 +4,18 @@ import { Phone, Mail, MapPin, Clock, CheckCircle2 } from "lucide-react";
 const industryOptions = [
   "Oil & Gas",
   "Pharmaceutical & Life Sciences",
-  "Semiconductor FABs",
-  "Residential & Commercial Buildings",
+  "Semiconductor Manufacturing",
+  "Buildings & Infrastructure",
   "Other",
 ];
 
 const serviceOptions = [
-  "Plant Engineering Design & Detailing",
+  "Multi-Discipline Engineering Services",
   "3D Modelling & 2D Drafting",
-  "Piping Engineering",
+  "Piping Design Engineering",
   "BIM & Digital Engineering",
   "As-Built Documentation & Reality Capture",
-  "QA/QC",
+  "Quality Commitment",
   "Other",
 ];
 
@@ -42,10 +42,10 @@ const Contact = () => {
   return (
     <>
       <section className="gradient-bg py-16 md:py-20">
-        <div className="section-container text-center text-primary-foreground">
+        <div className="section-container text-left text-primary-foreground">
           <p className="text-cyan text-sm font-semibold uppercase tracking-widest mb-2">Get In Touch</p>
           <h1 className="font-display text-4xl md:text-5xl font-bold">Partner with Futunir Global</h1>
-          <p className="text-primary-foreground/80 max-w-2xl mx-auto mt-4">
+          <p className="text-primary-foreground/80 max-w-2xl mt-4">
             At Futunir Global Pvt Ltd, we believe successful projects are built on strong partnerships, clear communication, and reliable delivery.
           </p>
         </div>
@@ -57,8 +57,8 @@ const Contact = () => {
             {/* Form */}
             <div className="lg:col-span-3">
               {submitted ? (
-                <div className="bg-muted rounded-xl p-10 text-center card-shadow">
-                  <CheckCircle2 className="h-16 w-16 text-secondary mx-auto mb-4" />
+                <div className="bg-muted rounded-xl p-10 text-left card-shadow">
+                  <CheckCircle2 className="h-16 w-16 text-secondary mb-4" />
                   <h3 className="font-display text-2xl font-bold text-foreground mb-3">Thank You!</h3>
                   <p className="text-muted-foreground">
                     Thank you for reaching out. Our engineering team will review your requirement and get back to you shortly.
@@ -66,11 +66,11 @@ const Contact = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  <h2 className="font-display text-2xl font-bold text-foreground mb-2">Send Us Your Requirement</h2>
+                  <h2 className="font-display text-2xl font-bold text-foreground mb-2 text-left">Send Us Your Requirement</h2>
 
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-1">Full Name *</label>
+                      <label className="block text-sm font-medium text-foreground mb-1 text-left">Full Name *</label>
                       <input
                         type="text"
                         required
@@ -80,7 +80,7 @@ const Contact = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-1">Company Name</label>
+                      <label className="block text-sm font-medium text-foreground mb-1 text-left">Company Name</label>
                       <input
                         type="text"
                         value={form.company}
@@ -92,7 +92,7 @@ const Contact = () => {
 
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-1">Email *</label>
+                      <label className="block text-sm font-medium text-foreground mb-1 text-left">Email *</label>
                       <input
                         type="email"
                         required
@@ -102,7 +102,7 @@ const Contact = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-1">Phone Number</label>
+                      <label className="block text-sm font-medium text-foreground mb-1 text-left">Phone Number</label>
                       <input
                         type="tel"
                         value={form.phone}
@@ -114,7 +114,7 @@ const Contact = () => {
 
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-1">Industry Type</label>
+                      <label className="block text-sm font-medium text-foreground mb-1 text-left">Industry Type</label>
                       <select
                         value={form.industry}
                         onChange={(e) => update("industry", e.target.value)}
@@ -127,7 +127,7 @@ const Contact = () => {
                       </select>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-1">Type of Service</label>
+                      <label className="block text-sm font-medium text-foreground mb-1 text-left">Type of Service</label>
                       <select
                         value={form.service}
                         onChange={(e) => update("service", e.target.value)}
@@ -142,7 +142,7 @@ const Contact = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-1">Brief Project Requirement</label>
+                    <label className="block text-sm font-medium text-foreground mb-1 text-left">Brief Project Requirement</label>
                     <textarea
                       rows={4}
                       value={form.requirement}
@@ -164,15 +164,15 @@ const Contact = () => {
             {/* Contact Info */}
             <div className="lg:col-span-2">
               <div className="bg-muted rounded-xl p-8 card-shadow space-y-6 sticky top-28">
-                <h3 className="font-display text-xl font-bold text-foreground">Contact Details</h3>
+                <h3 className="font-display text-xl font-bold text-foreground text-left">Contact Details</h3>
 
                 <div className="space-y-4 text-sm">
                   <div className="flex items-start gap-3">
                     <Phone className="h-5 w-5 text-secondary mt-0.5 shrink-0" />
                     <div>
-                      <p className="font-medium text-foreground">Phone</p>
-                      <a href="tel:8096474474" className="text-muted-foreground hover:text-secondary transition-colors">
-                        8096474474
+                      <p className="font-medium text-foreground text-left">Phone</p>
+                      <a href="tel:+918096474474" className="text-muted-foreground hover:text-secondary transition-colors">
+                        +91 8096 474 474
                       </a>
                     </div>
                   </div>
@@ -180,9 +180,13 @@ const Contact = () => {
                   <div className="flex items-start gap-3">
                     <Mail className="h-5 w-5 text-secondary mt-0.5 shrink-0" />
                     <div>
-                      <p className="font-medium text-foreground">Email</p>
+                      <p className="font-medium text-foreground text-left">Email</p>
                       <a href="mailto:info@futunir.com" className="text-muted-foreground hover:text-secondary transition-colors">
                         info@futunir.com
+                      </a>
+                      <span className="text-muted-foreground">, </span>
+                      <a href="mailto:sales@futunir.com" className="text-muted-foreground hover:text-secondary transition-colors">
+                        sales@futunir.com
                       </a>
                     </div>
                   </div>
@@ -190,9 +194,9 @@ const Contact = () => {
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-secondary mt-0.5 shrink-0" />
                     <div>
-                      <p className="font-medium text-foreground">Address</p>
-                      <p className="text-muted-foreground">
-                        24-1576/2, Allwyn Colony, Kukatpally, Hyderabad – 500072, India
+                      <p className="font-medium text-foreground text-left">Address</p>
+                      <p className="text-muted-foreground text-left">
+                        4-32-1170/2/54P, Allwyn Colony, PH-2, Kukatpally, Hyderabad – 500072, India
                       </p>
                     </div>
                   </div>
@@ -200,16 +204,15 @@ const Contact = () => {
                   <div className="flex items-start gap-3">
                     <Clock className="h-5 w-5 text-secondary mt-0.5 shrink-0" />
                     <div>
-                      <p className="font-medium text-foreground">Business Hours</p>
-                      <p className="text-muted-foreground">Monday – Friday: 9:00 AM – 5:00 PM</p>
-                      <p className="text-muted-foreground">Saturday: 9:00 AM – 5:00 PM</p>
+                      <p className="font-medium text-foreground text-left">Business Hours</p>
+                      <p className="text-muted-foreground">Mon – Sat: 9:00 AM to 5:00 PM</p>
                       <p className="text-muted-foreground">Sunday: Holiday</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="pt-4 border-t border-border">
-                  <h4 className="font-display font-bold text-foreground mb-3">Why Clients Choose Futunir</h4>
+                  <h4 className="font-display font-bold text-foreground mb-3 text-left">Why Clients Choose Futunir</h4>
                   <ul className="space-y-2">
                     {[
                       "Engineering-first mindset",

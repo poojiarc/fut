@@ -1,3 +1,8 @@
+export interface ServiceDiscipline {
+  name: string;
+  items: string[];
+}
+
 export interface Service {
   id: string;
   title: string;
@@ -5,29 +10,69 @@ export interface Service {
   description: string;
   highlights: string[];
   deliverables?: string[];
+  disciplines?: ServiceDiscipline[];
+  whyChooseUs?: string[];
+  closingStatement?: string;
   image: string;
 }
 
 export const services: Service[] = [
   {
-    id: "plant-engineering",
-    title: "Plant Engineering Design & Detailing",
-    shortTitle: "Plant Engineering Design",
+    id: "multi-discipline-engineering",
+    title: "Multi-Discipline Engineering Services",
+    shortTitle: "Multi-Discipline Engineering",
     description:
-      "We provide Concept, Basic, and Detailed Engineering across multiple disciplines, ensuring seamless coordination and compliance with project and client standards.",
+      "We deliver Concept, Basic, and Detailed Engineering across multiple disciplines, ensuring fully coordinated designs that meet client standards and are ready for construction. Our focus is on constructability, efficiency, and seamless collaboration across all engineering domains.",
     highlights: [
-      "Constructible layouts aligned with site realities",
-      "Strong interdisciplinary coordination to reduce clashes",
-      "Efficient resource utilization through right-sized engineering teams",
+      "Constructible Designs: Layouts aligned with real site conditions for smooth execution",
+      "Interdisciplinary Coordination: Minimized clashes through proactive collaboration",
+      "Optimized Resources: Right-sized engineering teams for cost-effective project delivery",
     ],
-    deliverables: [
-      "Plot plans and general arrangements",
-      "Equipment layouts and arrangements",
-      "Civil, structural, and architectural coordination drawings",
-      "HVAC, electrical, and instrumentation layouts (coordination level)",
-      "Interdisciplinary design coordination and clash resolution",
-      "Construction-ready 2D drawings derived from approved models",
+    disciplines: [
+      {
+        name: "Process Engineering",
+        items: [
+          "Process Flow Diagrams (PFDs) & Piping & Instrumentation Diagrams (P&IDs)",
+          "Equipment specifications and datasheets",
+          "Sizing and capacity calculations for equipment, piping, and process systems",
+          "Study of process systems to optimize performance, safety, and reliability",
+        ],
+      },
+      {
+        name: "Mechanical Engineering",
+        items: [
+          "Equipment sizing and thickness calculations, including stress and load analysis",
+          "Piping layouts, supports and HVAC system design and study",
+          "Equipment layouts and General arrangement drawings",
+        ],
+      },
+      {
+        name: "Electrical & Instrumentation (E&I) Engineering",
+        items: [
+          "Electrical load lists and distribution layouts",
+          "Cable routing, tray layouts, and instrumentation panel arrangements",
+          "Coordination with mechanical and process systems for clash-free design",
+        ],
+      },
+      {
+        name: "Civil & Structural Engineering",
+        items: [
+          "Structural foundations, steel, and concrete designs",
+          "Civil site layouts, grading, and architectural drawings",
+          "Coordination with mechanical, process, and E&I teams for seamless construction",
+        ],
+      },
+      {
+        name: "Deliverables Across Disciplines",
+        items: [
+          "Interdisciplinary clash detection and resolution",
+          "Construction-ready 2D drawings from approved models",
+          "Designs fully compliant with project and client standards",
+        ],
+      },
     ],
+    closingStatement:
+      "Our multi-discipline engineering services ensure practical, integrated, and construction-ready solutions that keep your projects on time and on budget.",
     image: "service-plant-engineering",
   },
   {
@@ -52,14 +97,14 @@ export const services: Service[] = [
   },
   {
     id: "piping-engineering",
-    title: "Piping Engineering",
-    shortTitle: "Piping Engineering",
+    title: "Piping Design Engineering",
+    shortTitle: "Piping Design Engineering",
     description:
-      "Our piping services are driven by safety, operability, maintainability, and constructability, supported by strong EPC execution experience.",
+      "We are specialized in piping design that combines safety, efficiency, and constructability. Our designs are built for smooth operations, easy maintenance, and real-world constructability, backed by years of hands-on EPC execution experience.",
     highlights: [
-      "Safe and operable designs compliant with codes and standards",
-      "Execution-focused routing to minimize site changes",
-      "Reduced rework and construction delays through accurate deliverables",
+      "Safe and reliable systems designed to meet industry standards",
+      "Optimized layouts for operational efficiency and minimal field conflicts",
+      "Constructible designs that reduce rework and accelerate project timelines",
     ],
     deliverables: [
       "Piping layout and routing studies",
@@ -115,16 +160,23 @@ export const services: Service[] = [
     image: "service-asbuilt",
   },
   {
-    id: "qaqc",
-    title: "Quality Assurance & Quality Control (QA/QC)",
-    shortTitle: "QA/QC",
+    id: "quality-commitment",
+    title: "Futunir Global Quality Commitment",
+    shortTitle: "Quality Commitment",
     description:
-      "Quality is embedded into every deliverable at Futunir Global Pvt Ltd through a structured three-level review system.",
+      "At Futunir Global Pvt Ltd, quality is not just a process, it's a commitment. Every deliverable we produce is guided by our dedication to safety, reliability, compliance and constructability, ensuring our clients receive engineering solutions they can trust.",
     highlights: [
-      "Originator Check — Self-verification against design intent, standards, and inputs",
-      "Checker Review — Independent technical and coordination review, compliance with codes and client specifications",
-      "Project Lead Approval — Final validation for constructability, completeness, and client readiness",
+      "Originator Check: Each engineer performs a self-verification of their work against design intent, project inputs and applicable standards. Ensures accuracy and adherence from the earliest stage of design.",
+      "Checker Review: An independent technical and coordination review is conducted to ensure compliance with codes, client specifications and interdisciplinary requirements. Helps identify and resolve potential issues early, reducing risk of rework.",
+      "Project Lead Approval: The project lead performs the final validation confirming constructability, completeness and client readiness. Guarantees deliverables are ready for seamless execution in the field.",
     ],
+    whyChooseUs: [
+      "Reliable and error-free designs that reduce rework and site issues",
+      "Full compliance with client and regulatory standards",
+      "Confidence in every stage of the project from concept to construction",
+    ],
+    closingStatement:
+      "At Futunir Global, our Quality Commitment ensures that every project we undertake reflects engineering excellence, precision and practical constructability, giving our clients solutions they can depend on.",
     deliverables: [],
     image: "service-qaqc",
   },

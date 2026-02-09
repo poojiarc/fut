@@ -9,6 +9,7 @@ import {
   Info,
   Wrench,
   Globe,
+  Briefcase,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -48,7 +49,7 @@ const Footer = () => {
               alt="Futunir Global Pvt Ltd"
               className="h-12 w-auto mb-4 brightness-200"
             />
-            <p className="text-primary-foreground/70 text-sm leading-relaxed">
+            <p className="text-primary-foreground/70 text-sm leading-relaxed text-left">
               Where Engineers Design the Future. Delivering high-quality,
               constructible engineering solutions globally.
             </p>
@@ -67,7 +68,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-display font-semibold text-lg mb-4">
+            <h4 className="font-display font-semibold text-lg mb-4 text-left">
               Quick Links
             </h4>
             <ul className="space-y-2.5">
@@ -76,6 +77,7 @@ const Footer = () => {
                 { label: "About Us", path: "/about", icon: Info },
                 { label: "Services", path: "/services", icon: Wrench },
                 { label: "Remote Model", path: "/remote-model", icon: Globe },
+                { label: "Careers", path: "/careers", icon: Briefcase },
                 { label: "Contact Us", path: "/contact", icon: Phone },
               ].map((item) => {
                 const Icon = item.icon;
@@ -97,35 +99,43 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-display font-semibold text-lg mb-4">
+            <h4 className="font-display font-semibold text-lg mb-4 text-left">
               Contact Info
             </h4>
             <div className="space-y-3 text-sm text-primary-foreground/70">
               <div className="flex items-start gap-2">
                 <Phone className="h-4 w-4 mt-0.5 shrink-0" />
-                <span>8096474474</span>
+                <span>+91 8096 474 474</span>
               </div>
               <div className="flex items-start gap-2">
                 <Mail className="h-4 w-4 mt-0.5 shrink-0" />
-                <a
-                  href="mailto:info@futunir.com"
-                  className="hover:text-cyan transition-colors"
-                >
-                  info@futunir.com
-                </a>
+                <div>
+                  <a
+                    href="mailto:info@futunir.com"
+                    className="hover:text-cyan transition-colors"
+                  >
+                    info@futunir.com
+                  </a>
+                  <span>, </span>
+                  <a
+                    href="mailto:sales@futunir.com"
+                    className="hover:text-cyan transition-colors"
+                  >
+                    sales@futunir.com
+                  </a>
+                </div>
               </div>
               <div className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
-                <span>
-                  24-1576/2, Allwyn Colony, Kukatpally, Hyderabad – 500072, India
+                <span className="text-left">
+                  4-32-1170/2/54P, Allwyn Colony, PH-2, Kukatpally, Hyderabad – 500072, India
                 </span>
               </div>
               <div className="mt-4 pt-3 border-t border-primary-foreground/10">
-                <p className="font-medium text-primary-foreground/90 mb-1">
+                <p className="font-medium text-primary-foreground/90 mb-1 text-left">
                   Business Hours
                 </p>
-                <p>Mon – Fri: 9:00 AM – 5:00 PM</p>
-                <p>Saturday: 9:00 AM – 5:00 PM</p>
+                <p>Mon – Sat: 9:00 AM to 5:00 PM</p>
                 <p>Sunday: Holiday</p>
               </div>
             </div>
@@ -133,7 +143,7 @@ const Footer = () => {
 
           {/* Quick Enquiry */}
           <div>
-            <h4 className="font-display font-semibold text-lg mb-4">
+            <h4 className="font-display font-semibold text-lg mb-4 text-left">
               Quick Enquiry
             </h4>
             <form onSubmit={handleSubmit} className="space-y-3">
@@ -188,10 +198,6 @@ const Footer = () => {
         {/* Bottom Centered Bar */}
         <div className="mt-12 pt-6 border-t border-primary-foreground/10">
           <div className="flex flex-col items-center justify-center gap-3 text-sm text-primary-foreground/60 text-center">
-            {/* Home scroll */}
-            
-              
-
             {/* StaffArc credit */}
             <div className="flex justify-center items-center gap-1">
               Made with <Heart className="inline h-4 w-4 text-red-500 mx-1" /> by

@@ -7,10 +7,10 @@ const Services = () => {
   return (
     <>
       <section className="gradient-bg py-16 md:py-20">
-        <div className="section-container text-center text-primary-foreground">
+        <div className="section-container text-left text-primary-foreground">
           <p className="text-cyan text-sm font-semibold uppercase tracking-widest mb-2">What We Do</p>
           <h1 className="font-display text-4xl md:text-5xl font-bold">Our Engineering Services</h1>
-          <p className="text-primary-foreground/80 max-w-2xl mx-auto mt-4">
+          <p className="text-primary-foreground/80 max-w-2xl mt-4">
             At Futunir Global Pvt Ltd, we provide end-to-end engineering design and support services, tailored to meet project-specific requirements across industries.
           </p>
         </div>
@@ -32,10 +32,10 @@ const Services = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/50 to-foreground/20" />
                 <div className="relative z-10 h-full flex flex-col justify-end p-6">
-                  <h3 className="font-display text-xl font-bold text-primary-foreground mb-2">
+                  <h3 className="font-display text-xl font-bold text-primary-foreground mb-2 text-left">
                     {service.shortTitle}
                   </h3>
-                  <p className="text-primary-foreground/70 text-sm line-clamp-3 mb-3">
+                  <p className="text-primary-foreground/70 text-sm line-clamp-3 mb-3 text-left">
                     {service.description}
                   </p>
                   <span className="text-cyan text-sm font-medium inline-flex items-center gap-1">
