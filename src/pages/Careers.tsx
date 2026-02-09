@@ -57,6 +57,13 @@ Please find my CV attached.
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 gradient-hero-overlay" />
+        {/* CENTERED HERO HEADING */}
+<div className="absolute inset-0 z-20 flex items-center justify-center text-center pointer-events-none">
+  <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground">
+    Build Your Career with Futunir
+  </h1>
+</div>
+
         <div className="relative z-10 h-full flex items-center">
           <div className="section-container text-primary-foreground">
             <p className="text-cyan text-sm font-semibold uppercase tracking-widest mb-2 text-left">
