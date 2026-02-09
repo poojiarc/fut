@@ -233,21 +233,21 @@ const ServiceDetail = () => {
         />
         <div className="absolute inset-0 gradient-hero-overlay" />
 
-        {/* Back to Services – top left */}
+        {/* Back to Services */}
         <div className="absolute top-6 left-6 z-20">
           <Link
             to="/services"
-            className="inline-flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground text-sm font-medium transition-colors"
+            className="inline-flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground text-sm font-medium"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Services
           </Link>
         </div>
 
-        {/* CENTER HERO CONTENT */}
+        {/* Center Hero Content */}
         <div className="relative z-10 h-full flex items-center justify-center text-center px-6">
           <div className="max-w-3xl text-primary-foreground">
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
               {service.title}
             </h1>
 
@@ -263,11 +263,33 @@ const ServiceDetail = () => {
       {/* CONTENT */}
       <section className="section-padding bg-card">
         <div className="section-container max-w-4xl">
-          {/* Highlights */}
-          {service.highlights?.length > 0 && (
+
+          {/* Highlights – single discipline */}
+          {service.highlights?.length > 0 && !service.disciplines && (
             <>
               <h3 className="font-display text-xl font-bold text-foreground mb-4 text-left">
-                Highlights
+                {service.id === "piping-engineering"
+                  ? "We Are Specialized in Piping Design"
+                  : "Highlights"}
+              </h3>
+              <div className="space-y-3 mb-10">
+                {service.highlights.map((item) => (
+                  <div key={item} className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-secondary mt-0.5 shrink-0" />
+                    <span className="text-muted-foreground text-left">
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+
+          {/* Highlights – multi discipline */}
+          {service.highlights?.length > 0 && service.disciplines && (
+            <>
+              <h3 className="font-display text-xl font-bold text-foreground mb-4 text-left">
+                Why Choose Us?
               </h3>
               <div className="space-y-3 mb-10">
                 {service.highlights.map((item) => (
@@ -283,8 +305,8 @@ const ServiceDetail = () => {
           )}
 
           {/* Disciplines */}
-          {service.disciplines && (
-            <div className="space-y-8">
+          {service.disciplines && service.disciplines.length > 0 && (
+            <div className="mb-10 space-y-8">
               <h3 className="font-display text-xl font-bold text-foreground text-left">
                 Our Services
               </h3>
@@ -309,9 +331,70 @@ const ServiceDetail = () => {
             </div>
           )}
 
+          {/* Quality Commitment – special logic */}
+          {service.id === "quality-commitment" && (
+            <>
+              <h3 className="font-display text-xl font-bold text-foreground mb-4 text-left">
+                Our Structured Three-Level Review System
+              </h3>
+              <div className="space-y-6 mb-10">
+                {service.highlights.map((item, idx) => (
+                  <div key={idx} className="bg-muted rounded-lg p-5">
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-full gradient-bg flex items-center justify-center text-primary-foreground font-bold text-sm">
+                        {idx + 1}
+                      </div>
+                      <span className="text-foreground text-left">{item}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {service.whyChooseUs && (
+                <>
+                  <h3 className="font-display text-xl font-bold text-foreground mb-4 text-left">
+                    Why Our Quality Commitment Matters
+                  </h3>
+                  <div className="space-y-3 mb-10">
+                    {service.whyChooseUs.map((item) => (
+                      <div key={item} className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-secondary mt-0.5 shrink-0" />
+                        <span className="text-muted-foreground text-left">
+                          {item}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
+            </>
+          )}
+
+          {/* Deliverables */}
+          {service.deliverables?.length > 0 && (
+            <>
+              <h3 className="font-display text-xl font-bold text-foreground mb-4 text-left">
+                Deliverables
+              </h3>
+              <div className="grid sm:grid-cols-2 gap-3 mb-10">
+                {service.deliverables.map((item) => (
+                  <div
+                    key={item}
+                    className="bg-muted rounded-lg p-4 flex items-start gap-3"
+                  >
+                    <CheckCircle2 className="h-4 w-4 text-secondary mt-0.5 shrink-0" />
+                    <span className="text-sm text-foreground text-left">
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+
           {/* Closing Statement */}
           {service.closingStatement && (
-            <p className="mt-10 text-muted-foreground leading-relaxed text-left italic border-l-4 border-secondary pl-4">
+            <p className="text-muted-foreground leading-relaxed text-left italic border-l-4 border-secondary pl-4">
               {service.closingStatement}
             </p>
           )}
