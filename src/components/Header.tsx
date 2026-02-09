@@ -1,25 +1,47 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Home, Info, Wrench, Globe, Phone, Menu, X, Briefcase, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { services } from "@/data/services";
 
 const navItems = [
-  { label: "Home", path: "/", icon: Home },
-  { label: "About Us", path: "/about", icon: Info },
-  { label: "Services", path: "/services", icon: Wrench, hasDropdown: true },
-  { label: "Remote Model", path: "/remote-model", icon: Globe },
-  { label: "Careers", path: "/careers", icon: Briefcase },
-  { label: "Contact Us", path: "/contact", icon: Phone },
+  { label: "Home", path: "/" },
+  { label: "About Us", path: "/about" },
+  { label: "Services", path: "/services", hasDropdown: true },
+  { label: "Remote Model", path: "/remote-model" },
+  { label: "Careers", path: "/careers" },
+  { label: "Industries", path: "/", scrollId: "industries" }, // ✅ FIXED
+  { label: "Contact Us", path: "/contact" },
 ];
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const navigate = useNavigate();
   const location = useLocation();
+
+  const handleScrollNavigation = (path: string, scrollId?: string) => {
+    if (!scrollId) return;
+
+    if (location.pathname !== path) {
+      navigate(path);
+      setTimeout(() => {
+        document.getElementById(scrollId)?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 250);
+    } else {
+      document.getElementById(scrollId)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border">
       <div className="section-container flex items-center justify-between h-16 md:h-20">
+        {/* LOGO */}
         <Link to="/" className="flex items-center">
           <img
             src="/images/futunir-logo.svg"
@@ -28,35 +50,36 @@ const Header = () => {
           />
         </Link>
 
-        {/* Desktop nav */}
+        {/* DESKTOP NAV */}
         <nav className="hidden md:flex items-center gap-1">
           {navItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = location.pathname === item.path || (item.hasDropdown && location.pathname.startsWith("/services"));
+            const isActive =
+              location.pathname === item.path ||
+              (item.hasDropdown && location.pathname.startsWith("/services"));
 
+            // SERVICES DROPDOWN
             if (item.hasDropdown) {
               return (
-                <div key={item.path} className="relative group">
+                <div key={item.label} className="relative group">
                   <Link
                     to={item.path}
-                    className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium ${
                       isActive
                         ? "text-secondary bg-primary/5"
                         : "text-foreground/70 hover:text-primary hover:bg-primary/5"
                     }`}
                   >
-                    <Icon className="h-4 w-4" />
                     {item.label}
-                    <ChevronDown className="h-3 w-3 ml-0.5 transition-transform group-hover:rotate-180" />
+                    <ChevronDown className="h-3 w-3 group-hover:rotate-180 transition-transform" />
                   </Link>
-                  {/* Dropdown */}
-                  <div className="absolute top-full left-0 pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+
+                  <div className="absolute top-full left-0 pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
                     <div className="bg-card border border-border rounded-xl shadow-lg py-2 min-w-[280px]">
                       {services.map((service) => (
                         <Link
                           key={service.id}
                           to={`/services/${service.id}`}
-                          className="block px-4 py-2.5 text-sm text-foreground/70 hover:text-secondary hover:bg-primary/5 transition-colors"
+                          className="block px-4 py-2.5 text-sm text-foreground/70 hover:text-secondary hover:bg-primary/5"
                         >
                           {service.shortTitle}
                         </Link>
@@ -67,74 +90,78 @@ const Header = () => {
               );
             }
 
+            // INDUSTRIES SCROLL BUTTON
+            if (item.scrollId) {
+              return (
+                <button
+                  key={item.label}
+                  onClick={() =>
+                    handleScrollNavigation(item.path, item.scrollId)
+                  }
+                  className="px-4 py-2 rounded-lg text-sm font-medium text-foreground/70 hover:text-primary hover:bg-primary/5"
+                >
+                  {item.label}
+                </button>
+              );
+            }
+
+            // NORMAL LINKS
             return (
               <Link
-                key={item.path}
+                key={item.label}
                 to={item.path}
-                className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium ${
                   isActive
                     ? "text-secondary bg-primary/5"
                     : "text-foreground/70 hover:text-primary hover:bg-primary/5"
                 }`}
               >
-                <Icon className="h-4 w-4" />
                 {item.label}
               </Link>
             );
           })}
         </nav>
 
-        {/* Mobile toggle */}
+        {/* MOBILE TOGGLE */}
         <button
-          className="md:hidden p-2 text-foreground"
+          className="md:hidden p-2"
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
         >
-          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {mobileOpen ? <X /> : <Menu />}
         </button>
       </div>
 
-      {/* Mobile nav */}
+      {/* MOBILE NAV */}
       {mobileOpen && (
-        <nav className="md:hidden bg-card border-b border-border animate-fade-in">
+        <nav className="md:hidden bg-card border-b border-border">
           <div className="section-container py-4 space-y-1">
             {navItems.map((item) => {
-              const Icon = item.icon;
-              const isActive = location.pathname === item.path;
-
+              // SERVICES MOBILE
               if (item.hasDropdown) {
                 return (
-                  <div key={item.path}>
+                  <div key={item.label}>
                     <button
-                      type="button"
-                      onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                      className={`w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                        isActive || location.pathname.startsWith("/services")
-                          ? "text-secondary bg-primary/5"
-                          : "text-foreground/70 hover:text-primary hover:bg-primary/5"
-                      }`}
+                      onClick={() =>
+                        setMobileServicesOpen(!mobileServicesOpen)
+                      }
+                      className="w-full flex justify-between px-4 py-3 text-sm font-medium text-foreground/70"
                     >
-                      <span className="flex items-center gap-3">
-                        <Icon className="h-5 w-5" />
-                        {item.label}
-                      </span>
-                      <ChevronDown className={`h-4 w-4 transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`} />
+                      {item.label}
+                      <ChevronDown
+                        className={`h-4 w-4 ${
+                          mobileServicesOpen ? "rotate-180" : ""
+                        }`}
+                      />
                     </button>
+
                     {mobileServicesOpen && (
-                      <div className="ml-8 mt-1 space-y-1">
-                        <Link
-                          to="/services"
-                          onClick={() => setMobileOpen(false)}
-                          className="block px-4 py-2 text-sm text-foreground/70 hover:text-secondary transition-colors"
-                        >
-                          All Services
-                        </Link>
+                      <div className="ml-6 space-y-1">
                         {services.map((service) => (
                           <Link
                             key={service.id}
                             to={`/services/${service.id}`}
                             onClick={() => setMobileOpen(false)}
-                            className="block px-4 py-2 text-sm text-foreground/70 hover:text-secondary transition-colors"
+                            className="block px-4 py-2 text-sm text-foreground/70 hover:text-secondary"
                           >
                             {service.shortTitle}
                           </Link>
@@ -145,18 +172,30 @@ const Header = () => {
                 );
               }
 
+              // INDUSTRIES MOBILE SCROLL
+              if (item.scrollId) {
+                return (
+                  <button
+                    key={item.label}
+                    onClick={() => {
+                      handleScrollNavigation(item.path, item.scrollId);
+                      setMobileOpen(false);
+                    }}
+                    className="block w-full text-left px-4 py-3 text-sm font-medium text-foreground/70 hover:text-primary"
+                  >
+                    {item.label}
+                  </button>
+                );
+              }
+
+              // NORMAL MOBILE LINKS
               return (
                 <Link
-                  key={item.path}
+                  key={item.label}
                   to={item.path}
                   onClick={() => setMobileOpen(false)}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                    isActive
-                      ? "text-secondary bg-primary/5"
-                      : "text-foreground/70 hover:text-primary hover:bg-primary/5"
-                  }`}
+                  className="block px-4 py-3 text-sm font-medium text-foreground/70 hover:text-primary"
                 >
-                  <Icon className="h-5 w-5" />
                   {item.label}
                 </Link>
               );

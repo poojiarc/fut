@@ -178,70 +178,48 @@ const Index = () => {
       </section>
 
       {/* INDUSTRIES */}
-      <section id="industries-section" className="section-padding bg-card">
-        <div className="section-container">
-          <div className="mb-12 text-left flex items-center gap-4 flex-wrap">
-            <div>
-              <p className="text-secondary text-sm font-semibold uppercase tracking-widest mb-2">Sectors</p>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
-                Industries We Serve
-              </h2>
+      {/* INDUSTRIES */}
+<section id="industries" className="section-padding bg-card">
+  <div className="section-container">
+    <div className="mb-12 text-left flex items-center gap-4 flex-wrap">
+      <div>
+        <p className="text-secondary text-sm font-semibold uppercase tracking-widest mb-2">
+          Sectors
+        </p>
+        <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
+          Industries We Serve
+        </h2>
+      </div>
+    </div>
+
+    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {industries.map((ind) => {
+        const Icon = ind.icon;
+        return (
+          <div key={ind.id} className="industry-card">
+            <div className="relative h-48 overflow-hidden">
+              <img
+                src={industryImages[ind.id]}
+                alt={ind.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
+            </div>
+            <div className="p-4 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center shrink-0">
+                <Icon className="h-5 w-5 text-primary-foreground" />
+              </div>
+              <h3 className="font-display font-semibold text-sm text-foreground text-left">
+                {ind.title}
+              </h3>
             </div>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {industries.map((ind) => {
-              const Icon = ind.icon;
-              return (
-                <div key={ind.id} className="industry-card">
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={industryImages[ind.id]}
-                      alt={ind.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
-                  </div>
-                  <div className="p-4 flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center shrink-0">
-                      <Icon className="h-5 w-5 text-primary-foreground" />
-                    </div>
-                    <h3 className="font-display font-semibold text-sm text-foreground text-left">{ind.title}</h3>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+        );
+      })}
+    </div>
+  </div>
+</section>
 
-      {/* WHY FUTUNIR */}
-      <section className="section-padding bg-muted">
-        <div className="section-container">
-          <div className="mb-12 text-left">
-            <p className="text-secondary text-sm font-semibold uppercase tracking-widest mb-2">Our Edge</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
-              Why Futunir?
-            </h2>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {whyFutunir.map((item) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={item.title}
-                  className="bg-card rounded-xl p-6 card-shadow hover:card-shadow-hover transition-all duration-300"
-                >
-                  <div className="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mb-4">
-                    <Icon className="h-6 w-6 text-primary-foreground" />
-                  </div>
-                  <h3 className="font-display font-bold text-foreground mb-2 text-left">{item.title}</h3>
-                  <p className="text-muted-foreground text-sm text-left">{item.desc}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
 
       {/* CTA */}
       <section className="gradient-bg py-16">

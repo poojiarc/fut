@@ -11,6 +11,7 @@ import ServiceDetail from "./pages/ServiceDetail";
 import RemoteModel from "./pages/RemoteModel";
 import Careers from "./pages/Careers";
 import Contact from "./pages/Contact";
+import ScrollToHash from "@/components/ScrollToHash";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,6 +22,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToHash />
         <Layout>
           <Routes>
             <Route path="/" element={<Index />} />
