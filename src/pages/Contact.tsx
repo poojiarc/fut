@@ -3,7 +3,7 @@ import { Phone, Mail, MapPin, Clock, CheckCircle2 } from "lucide-react";
 
 const industryOptions = [
   "Oil & Gas",
-  "Pharmaceutical & Life Sciences",
+  " Life Sciences",
   "Semiconductor Manufacturing",
   "Buildings & Infrastructure",
   "Other",

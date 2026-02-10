@@ -25,7 +25,7 @@ import { services } from "@/data/services";
 
 const industries = [
   { id: "oil-gas", title: "Oil & Gas", icon: Droplets },
-  { id: "pharma", title: "Pharmaceutical & Life Sciences", icon: FlaskConical },
+  { id: "pharma", title: " Life Sciences", icon: FlaskConical },
   { id: "semiconductor", title: "Semiconductor Manufacturing", icon: Cpu },
   { id: "buildings", title: "Buildings & Infrastructure", icon: Building2 },
 ];
